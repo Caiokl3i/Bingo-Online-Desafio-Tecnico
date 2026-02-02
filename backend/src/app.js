@@ -1,14 +1,14 @@
 import express from 'express';
-import cors from 'cors';
-import { router as healthRoutes } from './routes/healthRoutes.js';
+import healthRoutes from './routes/healthRoutes.js';
+import authRoutes from './routes/authRoutes.js';
+import profileRoutes from './routes/profileRoutes.js';
 
 const app = express();
 
-app.use(cors());
 app.use(express.json());
 
 app.use('/health', healthRoutes);
+app.use('/auth', authRoutes);
+app.use('/profile', profileRoutes)
 
-export default app;
-
-
+export default app
