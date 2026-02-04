@@ -16,10 +16,10 @@ CREATE TABLE IF NOT EXISTS bingos (
 
 CREATE TABLE IF NOT EXISTS cards (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
-  bingo_id INTEGER NOT NULL,
-  user_id INTEGER NOT NULL,
+  bingoId INTEGER NOT NULL,
+  userId INTEGER NOT NULL,
   numbers TEXT,
-  marked_numbers TEXT,
-  FOREIGN KEY (bingo_id) REFERENCES bingos(id),
-  FOREIGN KEY (user_id) REFERENCES users(id)
+  markedNumbers TEXT,
+  FOREIGN KEY (bingoId) REFERENCES bingos(id),
+  FOREIGN KEY (userId) REFERENCES users(id)
 );

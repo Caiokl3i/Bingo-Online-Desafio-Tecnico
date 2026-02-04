@@ -1,0 +1,259 @@
+/* --- Layout --- */
+.profile-layout {
+  min-height: 100vh;
+  background-color: var(--bg-app);
+  color: var(--text-main);
+  position: relative;
+  overflow-x: hidden;
+  padding-bottom: 40px;
+}
+
+/* Background Orbs */
+.bg-orb.orb-profile-1 {
+  width: 500px; height: 500px;
+  background: var(--primary);
+  top: -100px; right: -200px;
+  opacity: 0.15;
+}
+.bg-orb.orb-profile-2 {
+  width: 400px; height: 400px;
+  background: var(--secondary);
+  bottom: -50px; left: -100px;
+  opacity: 0.1;
+}
+
+/* Header */
+.profile-glass-header {
+  padding: 20px 40px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  margin-bottom: 40px;
+}
+
+.profile-glass-header h1 {
+  margin: 0;
+  font-size: 1.5rem;
+  letter-spacing: 1px;
+  color: #fff;
+}
+
+.back-btn-profile {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.2);
+  color: var(--text-muted);
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+.back-btn-profile:hover { color: white; border-color: white; }
+
+/* Grid Principal */
+.profile-content-grid {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: grid;
+  grid-template-columns: 350px 1fr; /* Coluna esquerda fixa, direita flexível */
+  gap: 30px;
+  align-items: start;
+}
+
+/* --- Identidade (Esquerda) --- */
+.identity-card {
+  background: rgba(30, 41, 59, 0.6);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 20px;
+  padding: 40px 20px;
+  text-align: center;
+  backdrop-filter: blur(12px);
+  position: sticky;
+  top: 100px;
+  box-shadow: 0 10px 40px -10px rgba(0,0,0,0.5);
+}
+
+.avatar-wrapper {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  margin: 0 auto 20px auto;
+}
+
+.avatar-content {
+  width: 100%; height: 100%;
+  background: linear-gradient(135deg, var(--primary), #4f46e5);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 3rem; font-weight: 700; color: white;
+  position: relative;
+  z-index: 2;
+  border: 4px solid rgba(15, 23, 42, 0.8);
+}
+
+.avatar-glow {
+  position: absolute;
+  top: -5px; left: -5px; right: -5px; bottom: -5px;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  border-radius: 50%;
+  z-index: 1;
+  animation: spinSlow 4s linear infinite;
+  opacity: 0.7;
+}
+@keyframes spinSlow { to { transform: rotate(360deg); } }
+
+.user-name { margin: 0; font-size: 1.6rem; color: white; }
+.user-email { display: block; color: var(--text-muted); font-size: 0.9rem; margin-top: 5px; }
+.user-role { 
+  display: inline-block; 
+  margin-top: 15px; 
+  background: rgba(255,255,255,0.05); 
+  padding: 5px 12px; 
+  border-radius: 20px; 
+  font-size: 0.7rem; 
+  letter-spacing: 1px; 
+  font-weight: 700; 
+  color: var(--primary);
+}
+
+.stats-mini-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  margin-top: 30px;
+  border-top: 1px solid rgba(255,255,255,0.05);
+  padding-top: 20px;
+}
+
+.stat-box { display: flex; flex-direction: column; }
+.stat-value { font-size: 1.5rem; font-weight: 800; color: white; }
+.stat-label { font-size: 0.7rem; color: var(--text-muted); letter-spacing: 1px; }
+
+/* --- Atividade (Direita) --- */
+.glass-panel {
+  background: rgba(30, 41, 59, 0.4);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px;
+  padding: 25px;
+  backdrop-filter: blur(10px);
+}
+.mb-30 { margin-bottom: 30px; }
+
+.panel-header-profile h3 {
+  margin: 0 0 20px 0;
+  font-size: 1.2rem;
+  color: var(--text-main);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  padding-bottom: 10px;
+}
+
+/* Lista de Jogos Ativos */
+.active-games-list { display: flex; flex-direction: column; gap: 10px; }
+
+.active-game-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(255,255,255,0.03);
+  padding: 15px 20px;
+  border-radius: 10px;
+  border-left: 4px solid var(--success);
+  transition: transform 0.2s, background 0.2s;
+}
+.active-game-row:hover { background: rgba(255,255,255,0.06); transform: translateX(5px); }
+
+.game-row-info { display: flex; flex-direction: column; gap: 4px; }
+.game-id-tag { font-family: monospace; color: var(--text-muted); font-size: 0.85rem; }
+.game-prize-txt { font-weight: 700; color: white; font-size: 1.1rem; }
+
+.play-action-btn {
+  background: var(--success);
+  border: none;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-weight: 700;
+  cursor: pointer;
+  font-size: 0.8rem;
+  box-shadow: 0 4px 10px rgba(34, 197, 94, 0.3);
+  transition: all 0.2s;
+}
+.play-action-btn:hover { background: #22c55e; transform: translateY(-2px); }
+
+/* Tabela de Histórico */
+.history-table-wrapper { overflow-x: auto; }
+.tech-history-table { width: 100%; border-collapse: collapse; min-width: 500px; }
+
+.tech-history-table th {
+  text-align: left;
+  padding: 12px;
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.tech-history-table td {
+  padding: 15px 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.03);
+  color: var(--text-main);
+  font-size: 0.9rem;
+}
+
+.mono-text { font-family: monospace; color: var(--text-muted) !important; }
+.winner-cell { color: #fbbf24 !important; font-weight: 600; }
+
+.result-badge {
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+}
+.result-badge.win { background: rgba(34, 197, 94, 0.2); color: #4ade80; border: 1px solid rgba(34, 197, 94, 0.3); }
+.result-badge.loss { background: rgba(255, 255, 255, 0.05); color: var(--text-muted); }
+
+/* Empty State */
+.empty-state-profile {
+  text-align: center;
+  padding: 30px;
+  color: var(--text-muted);
+  font-style: italic;
+}
+.link-btn {
+  background: transparent; border: none;
+  color: var(--primary); text-decoration: underline;
+  cursor: pointer; font-weight: 600; margin-top: 5px;
+}
+
+/* Loading */
+.loading-screen {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--bg-app);
+  color: var(--text-muted);
+}
+.tech-spinner {
+  width: 40px; height: 40px;
+  border: 3px solid rgba(255,255,255,0.1);
+  border-top-color: var(--primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 15px;
+}
+
+/* Mobile */
+@media (max-width: 850px) {
+  .profile-content-grid {
+    grid-template-columns: 1fr;
+  }
+  .identity-card { position: static; margin-bottom: 30px; }
+  .profile-glass-header { padding: 15px; flex-direction: column; align-items: flex-start; }
+}

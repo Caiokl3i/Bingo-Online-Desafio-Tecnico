@@ -1,0 +1,353 @@
+/* --- Container Imersivo --- */
+.game-container {
+  min-height: 100vh;
+  background-color: var(--bg-app);
+  color: var(--text-main);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Orbs de fundo posicionados para o jogo */
+.bg-orb.orb-game-1 {
+  width: 600px; height: 600px;
+  background: var(--primary);
+  top: -200px; left: -200px;
+  opacity: 0.2;
+}
+.bg-orb.orb-game-2 {
+  width: 500px; height: 500px;
+  background: var(--secondary);
+  bottom: -100px; right: -100px;
+  opacity: 0.15;
+}
+
+/* --- Header Minimalista --- */
+.game-glass-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  z-index: 10;
+}
+
+.header-left, .header-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex: 1;
+}
+.header-right { justify-content: flex-end; }
+
+.back-link {
+  background: none; border: none;
+  color: var(--text-muted);
+  font-weight: 600;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.back-link:hover { color: white; }
+
+.game-info-box {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+.info-label { font-size: 0.7rem; color: var(--text-muted); letter-spacing: 1px; }
+.info-value { font-family: monospace; font-weight: 700; color: white; }
+
+.header-center { flex: 2; display: flex; justify-content: center; }
+.prize-display {
+  background: rgba(251, 191, 36, 0.1);
+  border: 1px solid rgba(251, 191, 36, 0.3);
+  padding: 8px 20px;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 0 15px rgba(251, 191, 36, 0.1);
+}
+.prize-text { font-weight: 800; color: #fbbf24; font-size: 1.1rem; }
+
+.status-dot { width: 8px; height: 8px; border-radius: 50%; }
+.status-dot.active { background: var(--success); box-shadow: 0 0 8px var(--success); }
+.status-dot.waiting { background: #fbbf24; }
+.status-dot.finished { background: var(--error); }
+.status-text { font-size: 0.8rem; font-weight: 700; letter-spacing: 1px; }
+
+/* --- Layout Dividido --- */
+.game-split-layout {
+  flex: 1;
+  display: flex;
+  padding: 20px 40px;
+  gap: 40px;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
+  align-items: center;
+}
+
+/* --- Painel Esquerdo (Globo) --- */
+.draw-panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* A ESFERA 3D (O Globo) */
+.sphere-container {
+  position: relative;
+  margin-bottom: 30px;
+}
+
+.draw-sphere {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #4f46e5, #1e1b4b);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 
+    inset -10px -10px 20px rgba(0,0,0,0.5),
+    0 0 30px rgba(79, 70, 229, 0.4);
+  position: relative;
+  z-index: 2;
+  border: 1px solid rgba(255,255,255,0.1);
+  transition: all 0.3s;
+}
+
+.draw-sphere.pulsing {
+  animation: spherePulse 1s infinite alternate;
+}
+
+@keyframes spherePulse {
+  from { box-shadow: 0 0 30px rgba(79, 70, 229, 0.4); }
+  to { box-shadow: 0 0 60px rgba(79, 70, 229, 0.8); }
+}
+
+.sphere-number {
+  font-size: 5rem;
+  font-weight: 800;
+  color: white;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+}
+
+.sphere-shadow {
+  width: 160px;
+  height: 20px;
+  background: black;
+  border-radius: 50%;
+  filter: blur(15px);
+  opacity: 0.4;
+  margin-top: -10px;
+  z-index: 1;
+}
+
+/* Status Text */
+.status-message {
+  font-family: monospace;
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+  display: block;
+  min-height: 24px;
+}
+.status-message.auto { color: var(--primary-hover); }
+.status-message.finish { color: var(--error); font-weight: bold; }
+.timer { font-weight: bold; color: white; }
+
+/* Controles Admin */
+.admin-actions-panel {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.control-btn {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-transform: uppercase;
+}
+
+.control-btn.auto { background: rgba(255,255,255,0.1); color: white; border: 1px solid rgba(255,255,255,0.2); }
+.control-btn.auto:hover { background: rgba(255,255,255,0.2); }
+
+.control-btn.stop { background: rgba(239, 68, 68, 0.2); color: #fca5a5; border: 1px solid rgba(239, 68, 68, 0.4); }
+.control-btn.stop:hover { background: rgba(239, 68, 68, 0.3); }
+
+.control-btn.draw { 
+  background: linear-gradient(135deg, var(--primary), #4f46e5); 
+  color: white; 
+  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+}
+.control-btn.draw:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(99, 102, 241, 0.6); }
+
+/* Histórico Mini */
+.history-strip {
+  background: rgba(0,0,0,0.2);
+  padding: 10px 15px;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.history-label { font-size: 0.7rem; color: var(--text-muted); font-weight: 700; }
+.history-scroll { display: flex; gap: 8px; }
+.mini-ball {
+  width: 28px; height: 28px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.8rem; font-weight: 700;
+  color: var(--text-muted);
+}
+
+/* --- Painel Direito (Cartela) --- */
+.card-panel {
+  flex: 1.5;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.card-glass-frame {
+  background: rgba(30, 41, 59, 0.5);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 24px;
+  padding: 30px;
+  width: 100%;
+  max-width: 500px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+}
+
+.card-header-internal {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  border-bottom: 2px solid rgba(255,255,255,0.05);
+  padding-bottom: 15px;
+}
+.card-header-internal h3 { margin: 0; letter-spacing: 2px; color: var(--text-main); }
+.player-tag { background: var(--primary); color: white; padding: 4px 10px; border-radius: 4px; font-size: 0.7rem; font-weight: 800; }
+
+/* GRID DE BINGO */
+.bingo-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+}
+
+.grid-cell {
+  aspect-ratio: 1; /* Mantém quadrado */
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 12px;
+  color: var(--text-muted);
+  font-size: 1.2rem;
+  font-weight: 700;
+  cursor: not-allowed;
+  transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Estado: Sorteado mas não marcado (Pode clicar) */
+.grid-cell.highlight {
+  cursor: pointer;
+  background: rgba(255,255,255,0.1);
+  color: white;
+  border-color: var(--primary);
+  box-shadow: 0 0 15px rgba(99, 102, 241, 0.3) inset;
+  animation: pulseCell 2s infinite;
+}
+@keyframes pulseCell { 50% { border-color: white; } }
+
+/* Estado: Marcado (Confirmado) */
+.grid-cell.marked {
+  background: var(--primary);
+  color: white;
+  border-color: transparent;
+  transform: scale(0.95);
+  box-shadow: 0 0 10px rgba(99, 102, 241, 0.5);
+}
+
+.check-mark {
+  position: absolute;
+  font-size: 0.8rem;
+  top: 4px; right: 6px;
+  color: rgba(255,255,255,0.6);
+}
+
+/* Estado: Vitória */
+.grid-won .grid-cell.marked {
+  background: var(--success);
+  box-shadow: 0 0 15px rgba(34, 197, 94, 0.5);
+}
+
+/* --- Overlay de Vitória --- */
+.winner-overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(15, 23, 42, 0.9);
+  backdrop-filter: blur(5px);
+  border-radius: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+  animation: fadeIn 0.5s ease;
+}
+
+.winner-content {
+  text-align: center;
+  background: rgba(255,255,255,0.05);
+  padding: 40px;
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,0.1);
+  box-shadow: 0 0 50px rgba(0,0,0,0.5);
+}
+
+.trophy-emoji { font-size: 4rem; display: block; margin-bottom: 10px; animation: bounce 1s infinite; }
+@keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
+.winner-content h2 { font-size: 2rem; color: #fbbf24; margin: 0 0 20px 0; text-transform: uppercase; }
+
+.winner-details { margin-bottom: 30px; font-size: 1.2rem; }
+.winner-name { display: block; font-size: 1.5rem; color: white; margin-top: 5px; }
+
+.exit-btn {
+  background: white; color: var(--bg-app);
+  border: none; padding: 12px 30px;
+  border-radius: 30px; font-weight: 800;
+  cursor: pointer; transition: transform 0.2s;
+}
+.exit-btn:hover { transform: scale(1.05); }
+
+/* Responsividade Mobile */
+@media (max-width: 900px) {
+  .game-split-layout { flex-direction: column; padding: 20px; }
+  .draw-panel { width: 100%; margin-bottom: 20px; }
+  .card-panel { width: 100%; }
+  .sphere-container { margin-bottom: 15px; }
+  .draw-sphere { width: 120px; height: 120px; }
+  .sphere-number { font-size: 3rem; }
+  .game-glass-header { padding: 15px; }
+  .prize-text { font-size: 0.9rem; }
+}

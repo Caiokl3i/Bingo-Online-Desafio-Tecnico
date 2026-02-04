@@ -1,0 +1,51 @@
+/* index.css ou App.css */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  /* --- PALETA DE CORES (Modern Dark) --- */
+  /* Fundo principal profundo (um azul noturno, mais rico que preto puro) */
+  --bg-app: #0f172a;
+  
+  /* Superfícies com efeito de vidro (translúcido) */
+  --bg-surface: rgba(30, 41, 59, 0.7); 
+  --bg-surface-hover: rgba(51, 65, 85, 0.8);
+  --glass-border: 1px solid rgba(148, 163, 184, 0.1);
+  
+  /* Cores de Ação (Vibrantes para contrastar) */
+  --primary: #6366f1; /* Indigo vibrante para botões principais */
+  --primary-hover: #818cf8;
+  --secondary: #f43f5e; /* Rosa/Vermelho para destaques secundários */
+  --accent-prize: #fbbf24; /* Dourado para prêmios e vitórias */
+  --success: #22c55e;
+  --error: #ef4444;
+
+  /* Tipografia */
+  --text-main: #f8fafc; /* Quase branco para leitura fácil */
+  --text-muted: #94a3b8; /* Cinza azulado para textos secundários */
+  --font-stack: 'Inter', system-ui, -apple-system, sans-serif;
+
+  /* Formas e Efeitos */
+  --radius-lg: 16px; /* Bordas bem arredondadas */
+  --radius-md: 12px;
+  --radius-sm: 8px;
+  --shadow-glass: 0 8px 32px 0 rgba(0, 0, 0, 0.3); /* Sombra profunda e suave */
+  --backdrop-blur: blur(12px); /* O segredo do efeito de vidro */
+}
+
+/* Reset Global para garantir o tema escuro */
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-stack);
+  background-color: var(--bg-app);
+  color: var(--text-main);
+  min-height: 100vh;
+   /* Adiciona um sutil gradiente de fundo para profundidade */
+  background-image: radial-gradient(circle at top right, rgba(99, 102, 241, 0.15), transparent 40%),
+                    radial-gradient(circle at bottom left, rgba(244, 63, 94, 0.1), transparent 40%);
+}
+
+/* Padronização de inputs e botões globais para herdar a fonte */
+button, input {
+  font-family: inherit;
+}
